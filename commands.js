@@ -18,6 +18,11 @@ function deleteToDo(todos) {
   return db.deleteRow(todos)
 }
 
+function updateToDo(todosID, todosUpdate) {
+  console.log(todosID,todosUpdate)
+  return db.updateRow(todosID, todosUpdate)
+}
+
 
 function printTodos (todos) {
   todos.forEach(todo => {
@@ -31,5 +36,6 @@ function logError (err) {
 
 module.exports = {
   list,
-  deleteToDo
+  deleteToDo,
+  updateToDo
 }

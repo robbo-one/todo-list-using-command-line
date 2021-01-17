@@ -1,6 +1,6 @@
 const config = require('./knexfile').development
 const database = require('knex')(config)
-let connection = database(config.development)
+// let connection = database(config.development)
 
 function getTodos (db = database) {
   return db('todos').select()
@@ -24,9 +24,23 @@ function deleteRow (id, connection = database) {
   })
 }
 
+function updateRow(id, updatedTask, connection = database) {
+  connection('todos')
+  // console.log(id)
+  .update("task", updatedTask)
+  .where("id", id)
+  .catch(e => {
+    console.log(e)
+  })
+  .finally(()=>{
+    process.exit()
+  })
+}
+
 
 module.exports = {
   getTodos,
   close,
-  deleteRow
+  deleteRow,
+  updateRow
 }

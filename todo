@@ -5,6 +5,7 @@ const commands = require('./commands')
 const userInputs = process.argv
 const cmd = userInputs[2]
 const id = userInputs[3]
+const text = userInputs[4]
 
 switch (cmd) {
   case 'list':
@@ -12,6 +13,9 @@ switch (cmd) {
     break
   case 'done':
     commands.deleteToDo(id)
+    break
+  case 'update':
+    commands.updateToDo(id, text)
     break
 
   default:
