@@ -13,7 +13,7 @@ function close (db = database) {
  
 
 function deleteTodo (id) {
-  database("todos")
+  return database("todos")
   .delete()
   .where("id", id)
   .then((res) => {

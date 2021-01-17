@@ -25,6 +25,9 @@ function logError (err) {
 
 function done (note) {
   db.deleteTodo(note)
+    .finally(() => {
+      db.close()
+    })
 }
 
 module.exports = {
