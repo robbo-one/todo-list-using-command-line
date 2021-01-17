@@ -26,6 +26,19 @@ function deleteTodo (id) {
   })
 }
 
+function updateTodo (id, todo) {
+  return db.update(id, todo)
+  .then(numberUpdated => {
+    console.log(numberUpdated)
+  })
+  .catch(err => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 function printTodos (todos) {
   todos.forEach(todo => {
     console.info(`${todo.id}: ${todo.task}`)
@@ -38,5 +51,6 @@ function logError (err) {
 
 module.exports = {
   list,
-  deleteTodo
+  deleteTodo,
+  updateTodo
 }

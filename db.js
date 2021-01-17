@@ -13,6 +13,16 @@ function done (id) {
   .where('id', id)
 }
 
+function update (id, todo) {
+  return connection('todos')
+  .update({task : todo})
+  .where('id', id)
+  .then((res) => {
+    console.log(res)
+    getTodos()
+  })
+}
+
 function close (db = connection) {
   db.destroy()
 }
@@ -20,5 +30,6 @@ function close (db = connection) {
 module.exports = {
   getTodos, 
   done,
-  close
+  close,
+  update
 }
