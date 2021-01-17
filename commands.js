@@ -23,6 +23,11 @@ function updateToDo(todosID, todosUpdate) {
   return db.updateRow(todosID, todosUpdate)
 }
 
+function returnSearch(todo){
+  //console.log(todo)
+  return db.searchRow(todo)
+}
+
 
 function printTodos (todos) {
   todos.forEach(todo => {
@@ -37,5 +42,6 @@ function logError (err) {
 module.exports = {
   list,
   deleteToDo,
-  updateToDo
+  updateToDo,
+  returnSearch
 }

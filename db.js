@@ -37,10 +37,29 @@ function updateRow(id, updatedTask, connection = database) {
   })
 }
 
+function searchRow(keyword, connection = database) {
+  return connection('todos')
+  .select('*')
+  .where('task',keyword)
+  .then (todos => {
+    console.log(todo)
+    todos.forEach(todo => {
+      console.info(`${todo.id}: ${todo.task}`)
+})
+})
+  .catch(e => {
+    console.log(e)
+  })
+  .finally(()=>{
+    process.exit()
+  })
+}
+
 
 module.exports = {
   getTodos,
   close,
   deleteRow,
-  updateRow
+  updateRow,
+  searchRow
 }

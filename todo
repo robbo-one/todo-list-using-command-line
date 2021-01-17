@@ -17,6 +17,9 @@ switch (cmd) {
   case 'update':
     commands.updateToDo(id, text)
     break
+  case 'search':
+    commands.returnSearch(id)
+    break
 
   default:
     console.log(`I don't understand that command: ${cmd}`)
