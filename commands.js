@@ -15,7 +15,7 @@ function list () {
 
 function printTodos (todos) {
   todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.task}`)
+    console.info(`${todo.id}: ${todo.tasks}`)
   })
 }
 
@@ -23,6 +23,11 @@ function logError (err) {
   console.error('Uh oh!', err.message)
 }
 
+function done (note) {
+  db.deleteTodo(note)
+}
+
 module.exports = {
-  list
+  list,
+  done
 }

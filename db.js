@@ -10,8 +10,19 @@ function getTodos (db = database) {
 function close (db = database) {
   db.destroy()
 }
+ 
+
+function deleteTodo (id) {
+  database("todos")
+  .delete()
+  .where("id", id)
+  .then((res) => {
+    getTodos()
+  })
+}
 
 module.exports = {
   getTodos,
-  close
+  close,
+  deleteTodo
 }
