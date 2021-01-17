@@ -4,7 +4,6 @@ function list () {
   return db.getTodos()
     .then(todos => {
       printTodos(todos)
-      return null
     })
     .catch(err => {
       logError(err)
