@@ -1,5 +1,6 @@
 const db = require('./db')
 
+
 function list () {
   return db.getTodos()
     .then(todos => {
@@ -11,6 +12,18 @@ function list () {
     .finally(() => {
       db.close()
     })
+}
+function deleteTodo (id) {
+  return db.done(id)
+  .then(numberDeleted => {
+    console.log(numberDeleted)
+  })
+  .catch(err => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
 }
 
 function printTodos (todos) {
@@ -24,5 +37,6 @@ function logError (err) {
 }
 
 module.exports = {
-  list
+  list,
+  deleteTodo
 }
