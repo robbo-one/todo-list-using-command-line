@@ -13,6 +13,12 @@ function list () {
     })
 }
 
+function deleteToDo(todos) {
+  console.log(todos)
+  return db.deleteRow(todos)
+}
+
+
 function printTodos (todos) {
   todos.forEach(todo => {
     console.info(`${todo.id}: ${todo.task}`)
@@ -24,5 +30,6 @@ function logError (err) {
 }
 
 module.exports = {
-  list
+  list,
+  deleteToDo
 }

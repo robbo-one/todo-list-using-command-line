@@ -4,10 +4,14 @@ const commands = require('./commands')
 
 const userInputs = process.argv
 const cmd = userInputs[2]
+const id = userInputs[3]
 
 switch (cmd) {
   case 'list':
     commands.list()
+    break
+  case 'done':
+    commands.deleteToDo(id)
     break
 
   default:
