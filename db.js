@@ -21,8 +21,18 @@ function deleteTodo (id) {
   })
 }
 
+function updateTodos (id, tasks) {
+  return database('todos')
+  .where('id', id)
+  .update(tasks)
+    .then((res) => {
+      getTodos()
+    })
+}
+
 module.exports = {
   getTodos,
   close,
-  deleteTodo
+  deleteTodo,
+  updateTodos
 }

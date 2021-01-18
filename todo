@@ -12,7 +12,9 @@ switch (cmd) {
   case 'done':
     commands.done(userInputs[3])
     break
-
+  case 'update':
+    commands.update(userInputs[3], userInputs[4])
+    break
   default:
    
     console.log(`I don't understand that command: ${cmd}`)

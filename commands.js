@@ -23,14 +23,22 @@ function logError (err) {
   console.error('Uh oh!', err.message)
 }
 
-function done (note) {
+function done(note) {
   db.deleteTodo(note)
     .finally(() => {
       db.close()
     })
 }
 
+function update(id, task) {
+  db.updateTodos(id, {tasks: task})
+  .finally(() => {
+    db.close()
+  })
+}
+
 module.exports = {
   list,
-  done
+  done,
+  update
 }
