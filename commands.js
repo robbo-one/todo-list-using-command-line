@@ -19,10 +19,52 @@ function printTodos (todos) {
   })
 }
 
+function deleteTodo (id) {
+  return db.deleteTask(id)
+    .then(todo => {
+     list()
+    })
+    .catch(err => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+  }
+
+  function updateTodo (id, task) {
+    return db.updateTask(id, task)
+      .then(task => {
+       list()
+      })
+      .catch(err => {
+        logError(err)
+      })
+      .finally(() => {
+        db.close()
+      })
+    }
+
+    function search (id, task) {
+      return db.search(id, task)
+        .then(task => {
+         list()
+        })
+        .catch(err => {
+          logError(err)
+        })
+        .finally(() => {
+          db.close()
+        })
+      }    
+
 function logError (err) {
   console.error('Uh oh!', err.message)
 }
 
 module.exports = {
-  list
+  list,
+  deleteTodo,
+  updateTodo,
+  search
 }
