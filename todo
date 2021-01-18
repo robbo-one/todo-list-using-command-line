@@ -4,7 +4,7 @@ const commands = require('./commands')
 
 const userInputs = process.argv
 const cmd = userInputs[2]
-
+/
 switch (cmd) {
   case 'list':
     commands.list()

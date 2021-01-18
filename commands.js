@@ -40,7 +40,7 @@ function done (id) {
       db.close()
     })
 }
-
+/
 function update (id, task) {
   return db.updateID(id, task)
     .then(() => {
