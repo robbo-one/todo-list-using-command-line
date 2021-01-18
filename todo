@@ -20,6 +20,12 @@ switch (cmd) {
   case 'search':
     commands.returnSearch(id)
     break
+  case 'completed':
+    commands.markCompleted(id,text)
+    break
+  case 'showPriority':
+    commands.sortByPriority()
+    break
 
   default:
     console.log(`I don't understand that command: ${cmd}`)

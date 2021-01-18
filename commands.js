@@ -2,9 +2,9 @@ const db = require('./db')
 
 function list () {
   return db.getTodos()
-    .then(todos => {
-      printTodos(todos)
-    })
+    // .then(todos => {
+    //   printTodos(todos)
+    // })
     .catch(err => {
       logError(err)
     })
@@ -32,11 +32,19 @@ function returnSearch(todo){
 // })
 }
 
-
 function printTodos (todos) {
   todos.forEach(todo => {
     console.info(`${todo.id}: ${todo.task}`)
   })
+}
+
+function prioritise() {
+  return db.sortByPriority()
+}
+
+
+function markCompleted (id, completed) {
+  return db.updateCompleted(id, completed)
 }
 
 function logError (err) {
@@ -47,5 +55,7 @@ module.exports = {
   list,
   deleteToDo,
   updateToDo,
-  returnSearch
+  returnSearch,
+  markCompleted,
+  prioritise
 }

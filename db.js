@@ -3,7 +3,12 @@ const database = require('knex')(config)
 // let connection = database(config.development)
 
 function getTodos (db = database) {
-  return db('todos').select()
+  return db('todos').join('completed','completed.id', '=','todos.id').select()
+  .then (todos => {
+    todos.forEach(todo => {
+    console.info(`${todo.id}: ${todo.task} : ${todo.completed}`)
+    })
+  })
 }
 
 // Your DB functions go here
@@ -56,11 +61,36 @@ function searchRow(keyword, connection = database) {
   })
 }
 
+function updateCompleted(id, boolean, connection = database) {
+  connection('completed')
+  .join('todos','completed.id', '=','todos.id')
+  .select('todos.task','completed.completed')
+  .update('completed',boolean)
+  .where('id',id)
+  .catch(e => {
+    console.log(e)
+  })
+  .finally(()=>{
+    process.exit()
+  })
+}
+
+function sortByPriority (db = database) {
+  return db('todos').join('completed','completed.id', '=','todos.id').select().groupBy("priority")
+  .then (todos => {
+    todos.forEach(todo => {
+    console.info(`${todo.id}: ${todo.priority} : ${todo.task} : ${todo.completed}`)
+    })
+  })
+}
+
 
 module.exports = {
   getTodos,
   close,
   deleteRow,
   updateRow,
-  searchRow
+  searchRow,
+  updateCompleted,
+  sortByPriority
 }
