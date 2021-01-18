@@ -87,6 +87,20 @@ function sortByPriority (db = database) {
   })
 }
 
+function sortByTag (db = database){
+  return db('todos').join('completed','completed.id', '=','todos.id').select().orderBy("tag", "desc")
+  .then (todos => {
+    todos.forEach(todo => {
+    console.info(`${todo.id}: ${todo.task} : ${todo.completed} :${todo.priority} :${todo.tag}`)
+    })
+  })
+  .finally(()=>{
+    process.exit()
+  })
+}
+
+
+
 
 module.exports = {
   getTodos,
@@ -95,5 +109,6 @@ module.exports = {
   updateRow,
   searchRow,
   updateCompleted,
-  sortByPriority
+  sortByPriority,
+  sortByTag
 }

@@ -23,8 +23,11 @@ switch (cmd) {
   case 'completed':
     commands.markCompleted(id,text)
     break
-  case 'showPriority':
-    commands.prioritise()
+  case 'orderByPriority':
+    commands.orderByPriority()
+    break
+  case 'orderByTag':
+    commands.orderByTag()
     break
 
   default:

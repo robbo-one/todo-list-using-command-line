@@ -38,10 +38,18 @@ function printTodos (todos) {
   })
 }
 
-function prioritise() {
+function orderByPriority() {
   return db.sortByPriority()
 }
 
+function orderByTag() {
+  return db.sortByTag()
+  // .then (todos => {
+  //   todos.forEach(todo => {
+  //   console.info(`${todo.id}: ${todo.task} : ${todo.completed} :${todo.priority} :${todo.tag}`)
+  //   })
+  // })
+}
 
 function markCompleted (id, completed) {
   return db.updateCompleted(id, completed)
@@ -57,5 +65,6 @@ module.exports = {
   updateToDo,
   returnSearch,
   markCompleted,
-  prioritise
+  orderByPriority,
+  orderByTag
 }
