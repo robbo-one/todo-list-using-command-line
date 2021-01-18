@@ -71,6 +71,19 @@ function check(id, todo){
   });
 }
 
+function create(id, todo){
+  return db
+  .createTodo(id, todo)
+  .then((res) => {
+    list()
+  })
+  .catch((err) => {
+    logError(err);
+  })
+  .finally(() => {
+    db.close();
+  });
+}
 
 
 function printTodos(todos) {
@@ -89,4 +102,5 @@ module.exports = {
   update,
   search,
   check,
+  create,
 };

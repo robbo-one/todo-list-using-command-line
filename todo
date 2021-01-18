@@ -28,6 +28,10 @@ switch (cmd) {
     commands.check(input);
     break;
 
+  case "create":
+    commands.create(input);
+    break;
+
   default:
     console.log(`I don't understand that command: ${cmd}`);
 }

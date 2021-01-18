@@ -48,7 +48,15 @@ function checklistTodo (id, db = database){
     return res
 })
 }
-  
+function createTodo (todo, id, db = database){
+
+    return db('todos')
+  .insert({task: todo, id: id, done: false})
+  .where('id', id)
+  .then((res) => {
+    return res
+})
+}
 
 
 
@@ -58,5 +66,6 @@ module.exports = {
   deleteTodo,
   updateTodo,
   searchTodo,
-  checklistTodo
+  checklistTodo,
+  createTodo,
 }
