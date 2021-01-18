@@ -11,7 +11,40 @@ function close (db = database) {
   db.destroy()
 }
 
+function deleteTodo (id, db = database) {
+  return db('todos')
+    .delete()
+    .where('id', id)
+    .then((res) => {
+      return res
+    })
+}
+
+function updateTodo (id, todo, db = database){
+  console.log(todo)
+return db('todos')
+.update({task: todo})
+.where('id', id)
+.then((res) => {
+  return res
+})
+}
+
+function searchTodo (task, db = database){
+return db('todos')
+.where('task', "like", `%${task}%`)
+.select()
+.then((res) => {
+  return res
+})
+}
+
+
+
 module.exports = {
   getTodos,
-  close
+  close,
+  deleteTodo,
+  updateTodo,
+  searchTodo,
 }

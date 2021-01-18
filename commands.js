@@ -1,28 +1,77 @@
-const db = require('./db')
+const db = require("./db");
 
-function list () {
-  return db.getTodos()
-    .then(todos => {
-      printTodos(todos)
+function list() {
+  return db
+    .getTodos()
+    .then((todos) => {
+      printTodos(todos);
     })
-    .catch(err => {
-      logError(err)
+    .catch((err) => {
+      logError(err);
     })
     .finally(() => {
-      db.close()
+      db.close();
+    });
+}
+
+function done(id) {
+  return db
+    .deleteTodo(id)
+    .then((res) => {
+      // console.log(res, 'rows deleted')
+      list()
     })
+    .catch((err) => {
+      logError(err);
+    })
+    .finally(() => {
+      db.close();
+    });
 }
 
-function printTodos (todos) {
-  todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.task}`)
+function update(id, todo){
+  return db
+  .updateTodo(id, todo)
+  .then((res) => {
+    list()
   })
+  .catch((err) => {
+    logError(err);
+  })
+  .finally(() => {
+    db.close();
+  });
 }
 
-function logError (err) {
-  console.error('Uh oh!', err.message)
+function search(task){
+  return db
+  .searchTodo(task)
+  .then((res) => {
+    return printTodos(res)
+  })
+  .catch((err) => {
+    logError(err);
+  })
+  .finally(() => {
+    db.close();
+  });
+}
+
+
+
+function printTodos(todos) {
+  todos.forEach((todo) => {
+    console.info(`${todo.id}: ${todo.task}`);
+  });
+}
+
+function logError(err) {
+  console.error("Uh oh!", err.message);
 }
 
 module.exports = {
-  list
-}
+  list,
+  done,
+  update,
+  search,
+};

@@ -1,15 +1,28 @@
 #!/usr/bin/env node
 
-const commands = require('./commands')
+const commands = require("./commands");
 
-const userInputs = process.argv
-const cmd = userInputs[2]
+const userInputs = process.argv;
+const cmd = userInputs[2];
+const input = userInputs[3];
+const string = userInputs[4];
 
 switch (cmd) {
-  case 'list':
-    commands.list()
-    break
+  case "list":
+    commands.list();
+    break;
+
+  case "done":
+    commands.done(input);
+    break;
+
+  case "update":
+    commands.update(input, string);
+    break;
+  case "search":
+    commands.search(input);
+    break;
 
   default:
-    console.log(`I don't understand that command: ${cmd}`)
+    console.log(`I don't understand that command: ${cmd}`);
 }
