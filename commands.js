@@ -29,7 +29,6 @@ function done (id) {
     .then(() => {
       console.log(`Delete ${id} successful!`)
       return db.getTodos()
-
     })
     .then(todos => {
       printTodos(todos)
@@ -42,9 +41,43 @@ function done (id) {
     })
 }
 
+function update (id, task) {
+  return db.updateID(id, task)
+    .then(() => {
+      console.log(`Updated task ${id} successfully!`)
+      return db.getTodos()
+    })
+    .then(todos => {
+      printTodos(todos)
+    })
+    .catch(err => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
 
+function search (query) {
+  return db.searchTask(query)
+    .then((todos) => {
+      console.log(`Found ${query}!`)
+      return todos
+    })
+    .then(todos => {
+      printTodos(todos)
+    })
+    .catch(err => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
 
 module.exports = {
   list,
-  done
+  done,
+  update,
+  search
 }
