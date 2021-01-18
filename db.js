@@ -15,7 +15,7 @@ function deleteTodo(id, db = database) {
   //  console.log(res)
  // })
 }
-
+//add function
 function newTask(id, message, db = database) {
   return db('todos')
   .update('task', message)
