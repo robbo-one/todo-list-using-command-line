@@ -26,6 +26,10 @@ function updateToDo(todosID, todosUpdate) {
 function returnSearch(todo){
   //console.log(todo)
   return db.searchRow(todo)
+//   .then (todos => {
+//     // console.log(todo)
+//     printTodos(todos)
+// })
 }
 
 

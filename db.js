@@ -38,11 +38,12 @@ function updateRow(id, updatedTask, connection = database) {
 }
 
 function searchRow(keyword, connection = database) {
+  // console.log(keyword)
   return connection('todos')
   .select('*')
-  .where('task',keyword)
+  .where('task', "like" ,"%" + keyword + "%")
   .then (todos => {
-    console.log(todo)
+    // console.log(todo)
     todos.forEach(todo => {
       console.info(`${todo.id}: ${todo.task}`)
 })
