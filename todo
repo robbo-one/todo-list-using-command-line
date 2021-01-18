@@ -24,7 +24,7 @@ switch (cmd) {
     commands.markCompleted(id,text)
     break
   case 'showPriority':
-    commands.sortByPriority()
+    commands.prioritise()
     break
 
   default:

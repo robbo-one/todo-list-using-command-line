@@ -76,11 +76,14 @@ function updateCompleted(id, boolean, connection = database) {
 }
 
 function sortByPriority (db = database) {
-  return db('todos').join('completed','completed.id', '=','todos.id').select().groupBy("priority")
+  return db('todos').join('completed','completed.id', '=','todos.id').select().orderBy("priority", "asc")
   .then (todos => {
     todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.priority} : ${todo.task} : ${todo.completed}`)
+    console.info(`${todo.id}: ${todo.task} : ${todo.completed} :${todo.priority} `)
     })
+  })
+  .finally(()=>{
+    process.exit()
   })
 }
 
