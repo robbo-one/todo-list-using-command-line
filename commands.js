@@ -37,8 +37,20 @@ function update(id, task) {
   })
 }
 
+function search(search) {
+  return db.searchTodos(search)
+  .then(todo => {
+    printTodos(todo)
+  })
+  
+  .finally(() => {
+    db.close()
+  })
+}
+
 module.exports = {
   list,
   done,
-  update
+  update,
+  search
 }

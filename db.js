@@ -30,9 +30,23 @@ function updateTodos (id, tasks) {
     })
 }
 
+function searchTodos (search) {
+  return database("todos")
+  .select()
+  .where("tasks", "like", "%" + search + "%")
+}
+
 module.exports = {
   getTodos,
   close,
   deleteTodo,
-  updateTodos
+  updateTodos,
+  searchTodos
 }
+
+/*
+WILDCARD
+
+"%cat%"
+
+*/
