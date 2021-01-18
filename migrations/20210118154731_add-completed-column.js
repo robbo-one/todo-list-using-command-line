@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
   return knex.schema.alterTable('todos', (t) => {
-    t.string('completed')
+    t.string('completed').defaultTo('uncompleted')
   })
 };
 

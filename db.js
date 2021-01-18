@@ -24,6 +24,10 @@ function searchTask (query, db = database) {
   return db('todos').where('task', 'like', '%' + query + '%')
 }
 
+function completedTask (id, completed, db = database) {
+  return db()
+}
+
 module.exports = {
   getTodos,
   close,
