@@ -4,11 +4,6 @@ const database = require('knex')(config)
 
 function getTodos (db = database) {
   return db('todos').join('completed','completed.id', '=','todos.id').select()
-  .then (todos => {
-    todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.task} : ${todo.completed}`)
-    })
-  })
 }
 
 // Your DB functions go here
@@ -47,12 +42,6 @@ function searchRow(keyword, connection = database) {
   return connection('todos')
   .select('*')
   .where('task', "like" ,"%" + keyword + "%")
-  .then (todos => {
-    // console.log(todo)
-    todos.forEach(todo => {
-      console.info(`${todo.id}: ${todo.task}`)
-})
-})
   .catch(e => {
     console.log(e)
   })
@@ -77,11 +66,6 @@ function updateCompleted(id, boolean, connection = database) {
 
 function sortByPriority (db = database) {
   return db('todos').join('completed','completed.id', '=','todos.id').select().orderBy("priority", "asc")
-  .then (todos => {
-    todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.task} : ${todo.completed} :${todo.priority} `)
-    })
-  })
   .finally(()=>{
     process.exit()
   })
@@ -89,16 +73,15 @@ function sortByPriority (db = database) {
 
 function sortByTag (db = database){
   return db('todos').join('completed','completed.id', '=','todos.id').select().orderBy("tag", "desc")
-  .then (todos => {
-    todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.task} : ${todo.completed} :${todo.priority} :${todo.tag}`)
-    })
-  })
   .finally(()=>{
     process.exit()
   })
 }
-
+// .then (todos => {
+  //   todos.forEach(todo => {
+  //   console.info(`${todo.id}: ${todo.task} : ${todo.completed} :${todo.priority} :${todo.tag}`)
+  //   })
+  // })
 
 
 
