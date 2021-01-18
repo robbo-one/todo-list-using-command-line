@@ -23,6 +23,9 @@ switch (cmd) {
   case 'complete' :
     commands.completeTodo(id, todo)
     break
+  case 'priority' :
+    commands.priorityTodo(id, todo)
+    break
 
   default:
     console.log(`I don't understand that command: ${cmd}`)

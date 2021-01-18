@@ -42,6 +42,16 @@ function complete(id, word) {
   })
 }
 
+function priority(id, word) {
+  return connection('todos')
+  .update({priority : word})
+  .where('id', id)
+  .then((res) => {
+    console.log(res)
+    getTodos()
+  })
+}
+
 function close (db = connection) {
   db.destroy()
 }
@@ -52,5 +62,6 @@ module.exports = {
   close,
   update,
   search,
-  complete
+  complete,
+  priority
 }

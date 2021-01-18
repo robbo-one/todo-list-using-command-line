@@ -62,9 +62,20 @@ function completeTodo (id, word) {
   })
 }
 
+function priorityTodo (id, word) {
+  return db.priority(id, word)
+  .then()
+  .catch(err => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 function printTodos (todos) {
   todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.task}`)
+    console.info(`${todo.id}: ${todo.task}, ${todo.complete}, priority: ${todo.priority}`)
   })
 }
 
@@ -77,5 +88,6 @@ module.exports = {
   deleteTodo,
   updateTodo,
   searchTodo,
-  completeTodo
+  completeTodo,
+  priorityTodo
 }
