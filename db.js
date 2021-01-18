@@ -42,13 +42,25 @@ function isComplete () {
   .where('completed', 'Y')
 }
 
+function addTask (task) {
+  return database('todos')
+    .insert(task)
+    .then(() => {
+      getTodos()
+    })
+    .catch(e => {
+      console.log(e)
+    })
+}
+
 module.exports = {
   getTodos,
   close,
   deleteTodo,
   updateTodos,
   searchTodos,
-  isComplete
+  isComplete,
+  addTask
 }
 
 /*

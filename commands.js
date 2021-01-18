@@ -56,10 +56,17 @@ function search(search) {
     db.close()
   })
 }
+function add (task) {
+  return db.addTask({tasks: task, completed: 'N'})
+  .finally(() => {
+    db.close()
+  })
+}
 
 module.exports = {
   list,
   done,
   update,
-  search
+  search,
+  add
 }

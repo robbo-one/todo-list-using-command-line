@@ -15,12 +15,12 @@ switch (cmd) {
   case 'update':
     commands.update(userInputs[3], userInputs[4])
     break
-
-    case "search": 
+  case "search": 
     commands.search(userInputs[3])
     break
-
-  default:
-   
+  case 'add':
+    commands.add(userInputs[3])
+    break
+  default:  
     console.log(`I don't understand that command: ${cmd}`)
 }
