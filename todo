@@ -7,7 +7,7 @@ const cmd = userInputs[2]
 
 switch (cmd) {
   case 'list':
-    commands.list()
+    commands.list(userInputs[3])
     break
   case 'done':
     commands.done(userInputs[3])

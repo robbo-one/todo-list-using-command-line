@@ -36,12 +36,19 @@ function searchTodos (search) {
   .where("tasks", "like", "%" + search + "%")
 }
 
+function isComplete () {
+  return database("todos")
+  .select()
+  .where('completed', 'Y')
+}
+
 module.exports = {
   getTodos,
   close,
   deleteTodo,
   updateTodos,
-  searchTodos
+  searchTodos,
+  isComplete
 }
 
 /*

@@ -1,21 +1,31 @@
 const db = require('./db')
 
-function list () {
-  return db.getTodos()
-    .then(todos => {
-      printTodos(todos)
-    })
-    .catch(err => {
-      logError(err)
-    })
-    .finally(() => {
-      db.close()
-    })
+function list (input) {
+  if (input === 'complete'){
+    return db.isComplete()
+      .then(todo => {
+        printTodos(todo)
+      }) 
+      .finally(() => {
+        db.close()
+      })
+  } else {
+    return db.getTodos()
+      .then(todos => {
+        printTodos(todos)
+      })
+      .catch(err => {
+        logError(err)
+      })
+      .finally(() => {
+        db.close()
+      })
+  }  
 }
 
 function printTodos (todos) {
   todos.forEach(todo => {
-    console.info(`${todo.id}: ${todo.tasks}`)
+    console.info(`${todo.id}: ${todo.tasks}// task completed: ${todo.completed}`)
   })
 }
 
@@ -42,7 +52,6 @@ function search(search) {
   .then(todo => {
     printTodos(todo)
   })
-  
   .finally(() => {
     db.close()
   })
