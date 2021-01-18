@@ -50,6 +50,18 @@ function searchTodo (word) {
   })
 }
 
+
+function completeTodo (id, word) {
+  return db.complete(id, word)
+  .then()
+  .catch(err => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 function printTodos (todos) {
   todos.forEach(todo => {
     console.info(`${todo.id}: ${todo.task}`)
@@ -64,5 +76,6 @@ module.exports = {
   list,
   deleteTodo,
   updateTodo,
-  searchTodo
+  searchTodo,
+  completeTodo
 }

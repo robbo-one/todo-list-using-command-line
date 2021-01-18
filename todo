@@ -13,14 +13,15 @@ switch (cmd) {
     break
   case 'done':
     commands.deleteTodo(id)
-    //console.log(help)
     break
   case 'update' :
     commands.updateTodo(id, todo)
-    //console.log(todo)
     break
   case 'search' :
     commands.searchTodo(id)
+    break
+  case 'complete' :
+    commands.completeTodo(id, todo)
     break
 
   default:

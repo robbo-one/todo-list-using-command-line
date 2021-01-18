@@ -32,6 +32,16 @@ function search(word) {
   })
 }
 
+function complete(id, word) {
+  return connection('todos')
+  .update({complete : word})
+  .where('id', id)
+  .then((res) => {
+    console.log(res)
+    getTodos()
+  })
+}
+
 function close (db = connection) {
   db.destroy()
 }
@@ -41,5 +51,6 @@ module.exports = {
   done,
   close,
   update,
-  search
+  search,
+  complete
 }
