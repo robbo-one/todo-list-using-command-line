@@ -39,6 +39,17 @@ function updateTodo (id, todo) {
   })
 }
 
+function searchTodo (word) {
+  return db.search(word)
+  .then()
+  .catch(err => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 function printTodos (todos) {
   todos.forEach(todo => {
     console.info(`${todo.id}: ${todo.task}`)
@@ -52,5 +63,6 @@ function logError (err) {
 module.exports = {
   list,
   deleteTodo,
-  updateTodo
+  updateTodo,
+  searchTodo
 }

@@ -23,6 +23,15 @@ function update (id, todo) {
   })
 }
 
+function search(word) {
+  return connection('todos')
+  .where('task', 'like', '%' + word + '%')
+  .then((res) => {
+    console.log(res)
+    getTodos()
+  })
+}
+
 function close (db = connection) {
   db.destroy()
 }
@@ -31,5 +40,6 @@ module.exports = {
   getTodos, 
   done,
   close,
-  update
+  update,
+  search
 }
