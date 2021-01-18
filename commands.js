@@ -57,6 +57,20 @@ function search(task){
   });
 }
 
+function check(id, todo){
+  return db
+  .checklistTodo(id, todo)
+  .then((res) => {
+    list()
+  })
+  .catch((err) => {
+    logError(err);
+  })
+  .finally(() => {
+    db.close();
+  });
+}
+
 
 
 function printTodos(todos) {
@@ -74,4 +88,5 @@ module.exports = {
   done,
   update,
   search,
+  check,
 };

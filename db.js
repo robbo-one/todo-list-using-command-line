@@ -39,6 +39,17 @@ return db('todos')
 })
 }
 
+function checklistTodo (id, db = database){
+  console.log(id)
+    return db('todos')
+  .update({done: true})
+  .where('id', id)
+  .then((res) => {
+    return res
+})
+}
+  
+
 
 
 module.exports = {
@@ -47,4 +58,5 @@ module.exports = {
   deleteTodo,
   updateTodo,
   searchTodo,
+  checklistTodo
 }

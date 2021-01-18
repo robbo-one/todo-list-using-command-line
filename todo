@@ -19,8 +19,13 @@ switch (cmd) {
   case "update":
     commands.update(input, string);
     break;
+
   case "search":
     commands.search(input);
+    break;
+
+  case "check":
+    commands.check(input);
     break;
 
   default:
