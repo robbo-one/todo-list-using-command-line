@@ -4,12 +4,25 @@ const commands = require('./commands')
 
 const userInputs = process.argv
 const cmd = userInputs[2]
+let id
 
 switch (cmd) {
   case 'list':
     commands.list()
     break
-
+  case 'done':
+    id = userInputs[3]
+    commands.done(id)
+    break
+  case 'update':
+    id = userInputs[3]
+    message = userInputs[4] //takes message
+    commands.update(id, message)//initiates update function in command.js
+    break
+  case 'search':
+    let searchItem = userInputs[3] 
+    commands.search(searchItem)
+    break
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

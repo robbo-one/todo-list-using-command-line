@@ -7,11 +7,37 @@ function getTodos (db = database) {
 
 // Your DB functions go here
 
+function deleteTodo(id, db = database) {
+  return db('todos')
+  .delete()
+  .where('id', id)
+  //.then((res) => {
+  //  console.log(res)
+ // })
+}
+
+function newTask(id, message, db = database) {
+  return db('todos')
+  .update('task', message)
+  .where('id', id)
+}
+
+function retrieve(searchItem, db = database) {
+  return db('todos')
+  .select()
+  .where('task', 'like', `%${ searchItem }%`) //find task that contains search item
+  }
+
+
 function close (db = database) {
   db.destroy()
 }
 
+//EXPORT ALL FUNCTIONS
 module.exports = {
   getTodos,
+  deleteTodo,
+  newTask,
+  retrieve,
   close
 }
